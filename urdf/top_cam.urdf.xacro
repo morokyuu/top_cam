@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot name="top_cam" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- Included URDF/XACRO Files -->
+  <xacro:include filename="$(find cbot)/urdf/common.urdf.xacro" />
+  <xacro:include filename="$(find cbot)/urdf/webcam.urdf.xacro" />
+
+  <!-- base_footprint Definition -->
+  <link name="world" />
+
+  <!-- base Definition -->
+  <link name="base_link">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <visual>
+      <geometry>
+        <box size="0.03 0.03 0.050"/>
+      </geometry>
+      <material name="White" />
+    </visual>
+    <inertial>
+      <mass value="0.2" />
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <xacro:box_inertia m="0.2" x="0.069" y="0.138" z="0.050" />
+    </inertial>
+  </link>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/White</material>
+    <turnGravityOff>true</turnGravityOff>
+  </gazebo>
+
+  <joint name="base_joint" type="fixed">
+    <origin xyz="0 0 0.045" rpy="0 0 0" />
+    <parent link="world" />
+    <child  link="base_link" />
+  </joint>
+
+  <!-- Camera Definition -->
+  <xacro:webcam sub="0" parent="base_link"
+    transX="0" transY="0" transZ="3.0" />
+
+
+</robot>
