@@ -39,5 +39,6 @@
   <xacro:fixed_camera number="0" parent="base_link"
     transX="0" transY="0" transZ="3.0" />
 
-
+  <xacro:fixed_camera number="1" parent="base_link"
+    transX="0" transY="1.0" transZ="2.0" />
 </robot>
