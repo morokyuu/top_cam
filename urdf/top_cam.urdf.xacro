@@ -28,14 +28,14 @@
     <material>Gazebo/White</material>
     <turnGravityOff>true</turnGravityOff>
   </gazebo>
-
+ 
   <joint name="base_joint" type="fixed">
     <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="world" />
     <child  link="base_link" />
   </joint>
 
-  <!-- Camera Definition -->
+  <!-- camera link -->
   <xacro:fixed_camera number="0" parent="base_link"
     transX="0" transY="0" transZ="3.0" />
 
