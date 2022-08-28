@@ -1,20 +1,21 @@
 <launch>
-  <arg name="x_pos" default="0.0"/>
-  <arg name="y_pos" default="0.0"/>
-  <arg name="z_pos" default="0.0"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find turtlebot3_gazebo)/worlds/turtlebot3_world.world"/>
   </include>
+
+<group ns="fixed_camera_group">
+  <arg name="x_pos" default="0.0"/>
+  <arg name="y_pos" default="0.0"/>
+  <arg name="z_pos" default="0.0"/>
 
   <param name="robot_description"
     command="$(find xacro)/xacro $(find top_cam)/urdf/top_cam.urdf.xacro"/>
 
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model"
     args="-urdf -model fixed_camera -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos) -param robot_description"/>
-
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+</group>
 
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find top_cam)/config/top_cam.rviz"/>
+
 </launch>
