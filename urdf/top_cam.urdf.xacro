@@ -1,11 +1,11 @@
 <?xml version="1.0"?>
 <robot name="top_cam" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-  <!-- Included URDF/XACRO Files -->
-  <xacro:include filename="$(find cbot)/urdf/common.urdf.xacro" />
-  <xacro:include filename="$(find cbot)/urdf/webcam.urdf.xacro" />
+  <xacro:include filename="$(find top_cam)/urdf/common.urdf.xacro" />
+  <xacro:include filename="$(find top_cam)/urdf/fixed_camera.urdf.xacro" />
 
-  <!-- base_footprint Definition -->
+  <!-- for gazebo requirement -->
+  <!-- https://classic.gazebosim.org/tutorials?tut=ros_urdf&cat=connect_ros -->
   <link name="world" />
 
   <!-- base Definition -->
@@ -13,14 +13,14 @@
     <origin xyz="0 0 0" rpy="0 0 0"/>
     <visual>
       <geometry>
-        <box size="0.03 0.03 0.050"/>
+        <box size="0.03 0.03 0.03"/>
       </geometry>
       <material name="White" />
     </visual>
     <inertial>
-      <mass value="0.2" />
+      <mass value="0.1" />
       <origin xyz="0 0 0" rpy="0 0 0" />
-      <xacro:box_inertia m="0.2" x="0.069" y="0.138" z="0.050" />
+      <xacro:box_inertia m="0.1" x="0.01" y="0.01" z="0.01" />
     </inertial>
   </link>
 
@@ -30,13 +30,13 @@
   </gazebo>
 
   <joint name="base_joint" type="fixed">
-    <origin xyz="0 0 0.045" rpy="0 0 0" />
+    <origin xyz="0 0 0" rpy="0 0 0" />
     <parent link="world" />
     <child  link="base_link" />
   </joint>
 
   <!-- Camera Definition -->
-  <xacro:webcam sub="0" parent="base_link"
+  <xacro:fixed_camera number="0" parent="base_link"
     transX="0" transY="0" transZ="3.0" />
 
 

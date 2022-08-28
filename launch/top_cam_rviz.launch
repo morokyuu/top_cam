@@ -16,7 +16,7 @@
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
 
-<node pkg="tf" type="static_transform_publisher" name="world_broadcaster" args = "0 0 0 0 0 0 world base_link 10" />
+<!-- <node pkg="tf" type="static_transform_publisher" name="world_broadcaster" args = "0 0 0 0 0 0 world base_link 10" /> -->
 
-  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find top_cam)/config/top_cam.rviz"/>
+<!--  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find top_cam)/config/top_cam.rviz"/> -->
 </launch>
