@@ -2,7 +2,7 @@
 <robot name="fixed_camera" xmlns:xacro="http://www.ros.org/wiki/xacro">
 
   <xacro:property name="camera_size" value="0.05" />
-  <xacro:macro name="fixed_camera" params="number parent transX transY transZ">
+  <xacro:macro name="fixed_camera" params="number parent transX transY transZ roll pitch yaw">
     <link name="camera_${number}">
       <visual>
         <origin xyz="0 0 0" rpy="0 0 0" />
@@ -15,7 +15,7 @@
 
 
     <joint name="camera_${number}_joint" type="fixed">
-      <origin xyz="${transX} ${transY} ${transZ}" rpy="0 0 0" />
+      <origin xyz="${transX} ${transY} ${transZ}" rpy="${roll} ${pitch} ${yaw}" />
       <parent link="${parent}"/>
       <child link="camera_${number}"/>
     </joint>
@@ -25,11 +25,11 @@
       <visualize>true</visualize>
       <turnGravityOff>true</turnGravityOff>
 
-      <sensor type="camera" name="camera_${number}_camera">
+      <sensor type="camera" name="camera_${number}">
         <update_rate>10.0</update_rate>
-        <camera name="camera_${number}_camera">
+        <camera name="camera_${number}">
           <pose>${camera_size/2} 0 0 0 0 0}</pose>
-          <horizontal_fov>1.3962634</horizontal_fov>
+          <horizontal_fov>1.6</horizontal_fov><!--larger:wide-vier smaller:shallow-->
           <image>
             <width>800</width>
             <height>600</height>
@@ -49,7 +49,7 @@
         <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
           <alwaysOn>true</alwaysOn>
           <updateRate>0.0</updateRate>
-          <cameraName>camera_${number}_camera</cameraName>
+          <cameraName>camera_${number}</cameraName>
           <imageTopicName>image_raw</imageTopicName>
           <cameraInfoTopicName>camera_info</cameraInfoTopicName>
           <frameName>camera_${number}</frameName>
