@@ -37,8 +37,8 @@
 
   <!-- camera link -->
   <xacro:fixed_camera number="0" parent="base_link"
-    transX="0" transY="0" transZ="4.0" roll="0.0" pitch="1.57" yaw="0.0" />
+    transX="0" transY="0" transZ="2.5" roll="-1.57" pitch="1.57" yaw="0.0" />
 
   <xacro:fixed_camera number="1" parent="base_link"
-    transX="0" transY="1.0" transZ="3.0" roll="0.0" pitch="1.57" yaw="0.0"/>
+    transX="-1.2" transY="0.0" transZ="1.7" roll="0.0" pitch="1.2" yaw="0.0"/>
 </robot>
